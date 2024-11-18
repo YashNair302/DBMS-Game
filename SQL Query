@@ -1,0 +1,23 @@
+1)  SELECT * FROM Properties WHERE status = 'Available';
+2)  SELECT COUNT(*) AS villa_count 
+    FROM Properties 
+    WHERE property_type = 'Villa' AND status = 'Available';
+3)  SELECT address, price FROM Properties WHERE property_type = 'Villa';
+4)  SELECT address, price 
+    FROM Properties 
+    WHERE property_type = 'Villa' 
+    ORDER BY price DESC;
+5)  INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+    ('Jamie Carter', 'jamie.carter@example.com', 'Villa', 800000, '2024-01-12');
+6)  UPDATE Properties
+    SET price = 750000
+    WHERE address = '909 Willow Way' AND seller_name = 'Henry Gold';
+7)  SELECT Properties.address, Properties.property_type, Properties.price
+    FROM Properties
+    LEFT JOIN Transactions ON Properties.address = Transactions.property_address
+    WHERE Properties.property_type = 'Villa' 
+    AND Properties.price <= 800000 
+    AND (Transactions.transaction_status IS NULL OR Transactions.transaction_status != 'Completed');
+8)  INSERT INTO Transactions (transaction_date, property_address, buyer_name, buyer_contact_info, sale_price, payment_method, transaction_status) 
+    VALUES (CURRENT_DATE, '909 Willow Way', 'Jamie Carter', 'jamie.carter@example.com', 750000, 'Cash', 'Completed');
+9)  SELECT * FROM Transactions WHERE property_address = '909 Willow Way';
