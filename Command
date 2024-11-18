@@ -1,0 +1,81 @@
+CREATE TABLE Properties (
+    address VARCHAR(100) PRIMARY KEY,
+    property_type VARCHAR(50),
+    price DECIMAL(10, 2),
+    status VARCHAR(20),
+    listed_date DATE,
+    seller_name VARCHAR(100),
+    seller_contact VARCHAR(100)
+);
+
+-- Step 2: Create Customers Table
+CREATE TABLE Customers (
+    full_name VARCHAR(100) PRIMARY KEY,
+    contact_info VARCHAR(100) UNIQUE,
+    preferred_type VARCHAR(50),
+    budget DECIMAL(10, 2),
+    last_inquiry_date DATE
+);
+
+-- Step 3: Create Transactions Table
+CREATE TABLE Transactions (
+    transaction_date DATE,
+    property_address VARCHAR(100),
+    buyer_name VARCHAR(100),
+    buyer_contact_info VARCHAR(100),
+    sale_price DECIMAL(10, 2),
+    payment_method VARCHAR(50),
+    transaction_status VARCHAR(20),
+    PRIMARY KEY (transaction_date, property_address),
+    FOREIGN KEY (property_address) REFERENCES Properties(address)
+);
+
+-- Insert Data into Properties
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('123 Maple St', 'Villa', 850000, 'Available', TO_DATE('2024-01-15', 'YYYY-MM-DD'), 'John Doe', 'john.doe@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('456 Oak Ave', 'Apartment', 300000, 'Available', TO_DATE('2024-02-10', 'YYYY-MM-DD'), 'Jane Smith', 'jane.smith@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('789 Pine Rd', 'House', 500000, 'Sold', TO_DATE('2023-11-20', 'YYYY-MM-DD'), 'Tom Lee', 'tom.lee@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('707 Palm Rd', 'Villa', 900000, 'Available', TO_DATE('2024-03-10', 'YYYY-MM-DD'), 'Sophia Orange', 'sophia.orange@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('909 Willow Way', 'Villa', 820000, 'Available', TO_DATE('2024-03-15', 'YYYY-MM-DD'), 'Henry Gold', 'henry.gold@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('202 Birch Ln', 'Villa', 875000, 'Available', TO_DATE('2024-03-05', 'YYYY-MM-DD'), 'Jake Brown', 'jake.brown@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('303 Redwood Dr', 'Apartment', 200000, 'Available', TO_DATE('2024-04-10', 'YYYY-MM-DD'), 'Emma Green', 'emma.green@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('404 Ash Ct', 'House', 450000, 'Sold', TO_DATE('2024-05-22', 'YYYY-MM-DD'), 'Liam Black', 'liam.black@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('606 Elm St', 'Apartment', 250000, 'Available', TO_DATE('2024-07-25', 'YYYY-MM-DD'), 'Mason Gray', 'mason.gray@example.com');
+INSERT INTO Properties (address, property_type, price, status, listed_date, seller_name, seller_contact) VALUES
+('505 Spruce St', 'Villa', 880000, 'Available', TO_DATE('2024-06-18', 'YYYY-MM-DD'), 'Olivia Blue', 'olivia.blue@example.com');
+
+-- Insert Data into Customers
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Jamie Carter', 'jamie.carter@example.com', 'Villa', 800000, TO_DATE('2024-01-12', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Alex Murphy', 'alex.murphy@example.com', 'Apartment', 250000, TO_DATE('2024-01-18', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Taylor Evans', 'taylor.evans@example.com', 'House', 600000, TO_DATE('2024-02-01', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Morgan Lee', 'morgan.lee@example.com', 'Villa', 700000, TO_DATE('2024-02-15', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Jordan Kim', 'jordan.kim@example.com', 'Apartment', 300000, TO_DATE('2024-03-10', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Casey Diaz', 'casey.diaz@example.com', 'Villa', 750000, TO_DATE('2024-03-22', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Robin Cruz', 'robin.cruz@example.com', 'House', 550000, TO_DATE('2024-04-02', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Chris Palmer', 'chris.palmer@example.com', 'Villa', 900000, TO_DATE('2024-04-10', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Pat Reese', 'pat.reese@example.com', 'Apartment', 320000, TO_DATE('2024-04-25', 'YYYY-MM-DD'));
+INSERT INTO Customers (full_name, contact_info, preferred_type, budget, last_inquiry_date) VALUES
+('Sam Brooks', 'sam.brooks@example.com', 'Villa', 780000, TO_DATE('2024-05-05', 'YYYY-MM-DD'));
+
+-- Insert Data into Transactions
+INSERT INTO Transactions (transaction_date, property_address, buyer_name, buyer_contact_info, sale_price, payment_method, transaction_status) VALUES
+(TO_DATE('2024-01-20', 'YYYY-MM-DD'), '789 Pine Rd', 'Taylor Evans', 'taylor.evans@example.com', 500000, 'Mortgage', 'Completed');
+INSERT INTO Transactions (transaction_date, property_address, buyer_name, buyer_contact_info, sale_price, payment_method, transaction_status) VALUES
+(TO_DATE('2024-02-05', 'YYYY-MM-DD'), '404 Ash Ct', 'Robin Cruz', 'robin.cruz@example.com', 450000, 'Cash', 'Completed');
